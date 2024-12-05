@@ -1,38 +1,184 @@
-.App {
-  text-align: center;
+/* 全局设置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* 游戏容器 */
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: white;
+  padding: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 左侧棋盘部分 */
+.game-board {
+  display: inline-block;
+  margin-right: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 右侧信息部分 */
+.game-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 280px;
+}
+
+/* 游戏状态显示 */
+.status {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #333;
+}
+
+/* 按钮样式 */
+button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  border: none;
+  background-color: #4CAF50;
   color: white;
+  padding: 12px 25px;
+  margin: 8px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(81, 203, 238, 0.5);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* 棋盘和方格的样式 */
+.board-row {
+  display: flex;
+  margin-bottom: 5px; /* 增加行间距 */
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+  margin: 2px;
+  border: 2px solid #ccc;
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  border-radius: 6px; /* 增加圆角效果 */
+}
+
+.square:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.square.X {
+  color: #f44336;  /* X 使用红色 */
+}
+
+.square.O {
+  color: #3f51b5;  /* O 使用蓝色 */
+}
+
+/* 移动历史记录 */
+ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+li button {
+  background-color: #2196F3;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+li button:hover {
+  background-color: #0b7dda;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .square {
+    width: 40px;
+    height: 40px;
+    font-size: 24px; /* 调整字体大小 */
   }
-  to {
-    transform: rotate(360deg);
+
+  .game-info {
+    max-width: 230px; /* 小屏幕下右侧栏宽度 */
+  }
+
+  .status {
+    font-size: 20px;
+  }
+
+  .game-board {
+    margin-right: 20px; /* 减小棋盘和信息部分的间距 */
+  }
+}
+
+@media (max-width: 480px) {
+  .square {
+    width: 35px;
+    height: 35px;
+    font-size: 18px; /* 更小的屏幕上调整字体 */
+  }
+
+  .game-info {
+    max-width: 200px; /* 在更小的屏幕上减小右侧宽度 */
+  }
+
+  .status {
+    font-size: 18px;
+  }
+
+  .game {
+    flex-direction: column;
+    align-items: center;
   }
 }
